@@ -7,6 +7,7 @@ class SmileFaceApp:
         self.master.bind("<Button-3>", self.change_to_sad_face)  # Right-click
         self.master.bind("<Button-1>", self.change_to_smile_face)  # Left-click
         self.master.bind("<Escape>", self.exit_app)  # Escape key
+        self.master.bind("<MouseWheel>", self.toggle_face)  # Mouse wheel
         self.is_smiling = True
         self.canvas = tk.Canvas(self.master, width=400, height=400)
         self.canvas.pack()
@@ -31,6 +32,10 @@ class SmileFaceApp:
 
     def change_to_smile_face(self, event):
         self.is_smiling = True
+        self.draw_smile_face()
+
+    def toggle_face(self, event):
+        self.is_smiling = not self.is_smiling
         self.draw_smile_face()
 
     def exit_app(self, event):
